@@ -1,1 +1,10 @@
 project_id = "qgzdikcdsaklyndeigra"
+
+[functions.generate-roadmap]
+verify_jwt = true
+
+[functions.chat-mentor]
+verify_jwt = true
+
+[functions.fetch-videos]
+verify_jwt = true
