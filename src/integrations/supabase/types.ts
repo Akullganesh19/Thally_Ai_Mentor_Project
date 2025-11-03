@@ -14,7 +14,266 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      achievements: {
+        Row: {
+          awarded_at: string | null
+          badge_icon: string | null
+          description: string | null
+          id: string
+          name: string
+          user_id: string | null
+        }
+        Insert: {
+          awarded_at?: string | null
+          badge_icon?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          user_id?: string | null
+        }
+        Update: {
+          awarded_at?: string | null
+          badge_icon?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "achievements_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      milestones: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          description: string | null
+          duration_weeks: number | null
+          id: string
+          order_index: number | null
+          roadmap_id: string | null
+          status: string | null
+          title: string
+          topics: string[] | null
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          description?: string | null
+          duration_weeks?: number | null
+          id?: string
+          order_index?: number | null
+          roadmap_id?: string | null
+          status?: string | null
+          title: string
+          topics?: string[] | null
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          description?: string | null
+          duration_weeks?: number | null
+          id?: string
+          order_index?: number | null
+          roadmap_id?: string | null
+          status?: string | null
+          title?: string
+          topics?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "milestones_roadmap_id_fkey"
+            columns: ["roadmap_id"]
+            isOneToOne: false
+            referencedRelation: "roadmaps"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      roadmaps: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          roadmap_data: Json
+          status: string | null
+          title: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          roadmap_data: Json
+          status?: string | null
+          title: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          roadmap_data?: Json
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "roadmaps_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_profiles: {
+        Row: {
+          bio: string | null
+          career_goal: string | null
+          created_at: string | null
+          current_job_role: string | null
+          experience_years: number | null
+          id: string
+          skill_levels: Json | null
+          skills: string[] | null
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          bio?: string | null
+          career_goal?: string | null
+          created_at?: string | null
+          current_job_role?: string | null
+          experience_years?: number | null
+          id?: string
+          skill_levels?: Json | null
+          skills?: string[] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          bio?: string | null
+          career_goal?: string | null
+          created_at?: string | null
+          current_job_role?: string | null
+          experience_years?: number | null
+          id?: string
+          skill_levels?: Json | null
+          skills?: string[] | null
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_progress: {
+        Row: {
+          id: string
+          last_activity: string | null
+          milestone_id: string | null
+          problems_completed: number | null
+          progress_percentage: number | null
+          user_id: string | null
+          videos_watched: number | null
+        }
+        Insert: {
+          id?: string
+          last_activity?: string | null
+          milestone_id?: string | null
+          problems_completed?: number | null
+          progress_percentage?: number | null
+          user_id?: string | null
+          videos_watched?: number | null
+        }
+        Update: {
+          id?: string
+          last_activity?: string | null
+          milestone_id?: string | null
+          problems_completed?: number | null
+          progress_percentage?: number | null
+          user_id?: string | null
+          videos_watched?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_progress_milestone_id_fkey"
+            columns: ["milestone_id"]
+            isOneToOne: false
+            referencedRelation: "milestones"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "user_progress_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      videos_cache: {
+        Row: {
+          fetched_at: string | null
+          id: string
+          results: Json
+          topic: string
+        }
+        Insert: {
+          fetched_at?: string | null
+          id?: string
+          results: Json
+          topic: string
+        }
+        Update: {
+          fetched_at?: string | null
+          id?: string
+          results?: Json
+          topic?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
