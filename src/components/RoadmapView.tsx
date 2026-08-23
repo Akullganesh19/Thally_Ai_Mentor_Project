@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
 import { Sparkles, CheckCircle2, Circle, Clock, Target, TrendingUp } from "lucide-react";
 import MilestoneCard from "@/components/MilestoneCard";
+import AchievementsPanel from "@/components/AchievementsPanel";
 
 interface RoadmapViewProps {
   userId: string;
@@ -221,7 +222,10 @@ const RoadmapView = ({ userId }: RoadmapViewProps) => {
             </p>
           </div>
         </CardHeader>
-      </Card>
+        </Card>
+
+      {/* Achievements */}
+      <AchievementsPanel userId={userId} milestones={milestones} />
 
       {/* Milestones */}
       <div className="space-y-4">
