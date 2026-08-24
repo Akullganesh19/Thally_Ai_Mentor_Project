@@ -165,6 +165,11 @@ const AchievementsPanel = ({ userId, milestones }: AchievementsPanelProps) => {
             </span>
           </div>
           <Progress value={Math.min(levelProgress, 100)} className="h-2" />
+	  {!isMaxLevel && (
+  <p className="text-sm text-muted-foreground mt-2">
+    Keep completing milestones to unlock your next achievement badge.
+  </p>
+)}
         </div>
       </CardHeader>
       <CardContent>
