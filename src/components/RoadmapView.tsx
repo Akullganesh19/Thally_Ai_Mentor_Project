@@ -9,6 +9,7 @@ import { Sparkles, CheckCircle2, Circle, Clock, Target, TrendingUp } from "lucid
 import MilestoneCard from "@/components/MilestoneCard";
 import AchievementsPanel from "@/components/AchievementsPanel";
 
+
 interface RoadmapViewProps {
   userId: string;
 }
