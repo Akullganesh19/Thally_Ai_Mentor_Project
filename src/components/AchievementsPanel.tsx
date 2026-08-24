@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { Award, Sparkles, Trophy, Flame, Zap } from "lucide-react";
+import { Award, Sparkles, Trophy, Flame, Zap, Target } from "lucide-react";
 
 interface AchievementsPanelProps {
   userId: string;
@@ -165,10 +165,20 @@ const AchievementsPanel = ({ userId, milestones }: AchievementsPanelProps) => {
             </span>
           </div>
           <Progress value={Math.min(levelProgress, 100)} className="h-2" />
-	  {!isMaxLevel && (
-  <p className="text-sm text-muted-foreground mt-2">
-    Keep completing milestones to unlock your next achievement badge.
-  </p>
+
+{!isMaxLevel && (
+  <Card className="mt-4 border-dashed">
+    <CardContent className="pt-4">
+      <div className="flex items-center gap-2">
+        <Target className="w-4 h-4 text-primary" />
+        <p className="font-medium">Next Achievement Goal</p>
+      </div>
+
+      <p className="text-sm text-muted-foreground mt-2">
+        Complete 2 more milestones to unlock your next achievement badge.
+      </p>
+    </CardContent>
+  </Card>
 )}
         </div>
       </CardHeader>
