@@ -8,6 +8,8 @@ import { toast } from "sonner";
 import { Sparkles, CheckCircle2, Circle, Clock, Target, TrendingUp } from "lucide-react";
 import MilestoneCard from "@/components/MilestoneCard";
 import AchievementsPanel from "@/components/AchievementsPanel";
+import LastActiveBadge from "@/components/LastActiveBadge";
+
 
 
 interface RoadmapViewProps {
@@ -224,6 +226,10 @@ const RoadmapView = ({ userId }: RoadmapViewProps) => {
           </div>
         </CardHeader>
         </Card>
+	      <div className="flex justify-end">
+        <LastActiveBadge milestones={milestones} />
+      </div>
+	      
 
       {/* Achievements */}
       <AchievementsPanel userId={userId} milestones={milestones} />
