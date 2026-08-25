@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { Award, Sparkles, Trophy, Flame, Zap, Target } from "lucide-react";
+import { Award, Sparkles, Trophy, Flame, Zap, Target, CalendarCheck } from "lucide-react";
 
 interface AchievementsPanelProps {
   userId: string;
@@ -166,6 +166,7 @@ const AchievementsPanel = ({ userId, milestones }: AchievementsPanelProps) => {
           </div>
           <Progress value={Math.min(levelProgress, 100)} className="h-2" />
 
+{/* Next Achievement Goal */}
 {!isMaxLevel && (
   <Card className="mt-4 border-dashed">
     <CardContent className="pt-4">
@@ -180,6 +181,26 @@ const AchievementsPanel = ({ userId, milestones }: AchievementsPanelProps) => {
     </CardContent>
   </Card>
 )}
+
+{/* Learning Streak Progress */}
+<Card className="mt-3 bg-muted/30">
+  <CardContent className="pt-4">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center gap-2">
+        <CalendarCheck className="w-4 h-4 text-primary" />
+        <span className="font-medium">Learning Streak Progress</span>
+      </div>
+
+      <Badge variant="secondary">
+        {streak} Day{streak !== 1 ? "s" : ""}
+      </Badge>
+    </div>
+
+    <p className="text-sm text-muted-foreground mt-2">
+      Maintain your daily learning streak to earn additional XP and unlock future achievements.
+    </p>
+  </CardContent>
+</Card>
         </div>
       </CardHeader>
       <CardContent>
